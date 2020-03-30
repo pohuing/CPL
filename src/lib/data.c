@@ -12,9 +12,7 @@ void data_generate(size_t size, Data* outData){
     {
         int rand_1 = rand() % size;
         int rand_2 = rand() % size;
-        int temp = outData->data[rand_1];
-        outData->data[rand_1] = outData->data[rand_2];
-        outData->data[rand_2] = temp;
+        swap(rand_1, rand_2, outData);
     }
 }
 
@@ -22,14 +20,28 @@ void data_delete(Data* data){
     free(data->data);
 }
 
-// returns if a get was successfull
+// returns 1 if a get was successfull
 int data_get(size_t index, Data* data, int* out){
     if (index < data->size)
     {
         *out = data->data[index];
-        return 0;
+        return 1;
     }else
     {
         return -1;
     }
+}
+
+// returns 1 if swap was successfull
+int swap(size_t index1, size_t index2, Data* data){
+    if (index1 < data->size && index2 < data->size)
+    {
+        int temp = data->data[index1];
+        data->data[index1] = data->data[index2];
+        data->data[index2] = temp;
+        return 1;
+    }else
+    {
+        return -1;
+    }  
 }
