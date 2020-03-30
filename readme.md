@@ -4,11 +4,11 @@
     - [ ] Vergleiche
     - [ ] Zuweisungen
     - [ ] Konditionale Kompilierung
-- [ ] Daten einlesen
+- [x] Daten einlesen
 - [ ] Daten exportieren
     - [ ] Für von Datei geladene Werte sortiert.txt
     - [ ] Für selber generierte Daten Statistiken in Ergebnisse.txt
-- [ ] Zufallsdaten generieren
+- [x] Zufallsdaten generieren
     - [ ] Zufälliger Seed
 - [ ] UI
     - [ ] Sortieren eines Array mit Nutzerdefinierten Werten
@@ -17,3 +17,5 @@
         - [ ] Speichern in *-sort Datei
         - [ ] Statistiken Ausgabe
     - [ ] Sortieren von Generierten Daten
+
+Zählstatistiken durch COUNT_SWAPS

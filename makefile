@@ -1,13 +1,16 @@
-objects = $(srcDir)main.o $(libDir)data.o $(libDir)sort.o $(libDir)file.o
+objects = $(srcDir)main.o $(libDir)data.o $(libDir)sort.o $(libDir)file.o $(libDir)ui.o
 srcDir = src/
 libDir = $(srcDir)lib/
-CC = gcc -std=c11 -pedantic -Werror
-
-
+statistics = 
+CC = gcc 
+CFLAGS += -std=c11 -pedantic -Werror $(statistics)
+main : CFLAGS += -g
 main : $(objects)
-	$(CC) -g -o main.exe $(objects)
+	$(CC) -o main.exe $(objects)
+release : CFLAGS += -O3 
+release : $(objects)
+	$(CC) -o main.exe $(objects)
 main.o : $(srcDir)main.c $(libDir)data.o $(libDir)sort.o $(libDir)file.o
 
 clean:
-	rm $(srcDir)*.o
-	rm $(libDir)*.o
+	rm $(objects)

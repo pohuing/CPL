@@ -2,5 +2,5 @@
 #define SORT_H
 #include "data.h"
 
-int sort(Data* data);
+void sort(Data* data, long* swaps, long* comparisons);
 #endif // sort

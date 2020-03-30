@@ -6,11 +6,11 @@ int file_load(Data* data, char path[]){
     FILE* filepoint = fopen(path, "r");
     if (filepoint)
     {
-        int scan_err = fscanf(filepoint, "%ud", &data->size);
+        int scan_err = fscanf(filepoint, "%lu", &data->size);
         data->data = malloc(data->size * sizeof(int));
         for (int i = 0; i < data->size; i++)
         {
-            fscanf(filepoint, "%d", &data->data[i]);
+            int _ = fscanf(filepoint, "%d", &data->data[i]);
         }
         fclose(filepoint);
     }
