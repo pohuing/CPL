@@ -12,7 +12,7 @@ void data_generate(size_t size, Data* outData){
     {
         int rand_1 = rand() % size;
         int rand_2 = rand() % size;
-        swap(rand_1, rand_2, outData);
+        data_swap(rand_1, rand_2, outData);
     }
 }
 
@@ -33,7 +33,7 @@ int data_get(size_t index, Data* data, int* out){
 }
 
 // returns 1 if swap was successfull
-int swap(size_t index1, size_t index2, Data* data){
+int data_swap(size_t index1, size_t index2, Data* data){
     if (index1 < data->size && index2 < data->size)
     {
         int temp = data->data[index1];
@@ -44,4 +44,11 @@ int swap(size_t index1, size_t index2, Data* data){
     {
         return -1;
     }  
+}
+
+void data_print(Data* data){
+    for (size_t i = 0; i < data->size; i++)
+    {
+        printf("%d ", data->data[i]);
+    }
 }
