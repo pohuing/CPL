@@ -1,7 +1,7 @@
 objects = $(srcDir)main.o $(libDir)data.o $(libDir)sort.o $(libDir)file.o
 srcDir = src/
 libDir = $(srcDir)lib/
-CC = gcc -std=c11 -pedantic
+CC = gcc -std=c11 -pedantic -Werror
 
 
 main : $(objects)

@@ -1,4 +1,6 @@
 #include "data.h"
+#include <stdio.h>
+
 // Fills a Data pointer with new randomized data
 void data_generate(size_t size, Data* outData){
     outData->size = size;
