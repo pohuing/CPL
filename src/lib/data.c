@@ -18,8 +18,13 @@ void data_generate(size_t size, Data* outData){
         data_swap(rand_1, rand_2, outData);
     }
 }
+void data_instantiate(size_t size, Data* outData){
+    outData->size = size;
+    outData->data = malloc(outData->size * sizeof(int));
+}
 
 void data_delete(Data* data){
+    data->size = 0;
     free(data->data);
 }
 
@@ -31,8 +36,27 @@ int data_get(size_t index, Data* data, int* out){
         return 1;
     }else
     {
+        #ifdef LOGGING
+            printf("ERR: trying to access index %lu of %p max size %lu", index, data, data->size);
+        #endif
         return -1;
     }
+}
+
+int data_set(size_t index, Data* data, int value){
+    if (index < data->size)
+    {
+        data->data[index] = value;
+        return 1;
+    }else
+    {
+        #ifdef LOGGING
+        printf("ERR: trying to set index %lu of data %p max size %lu", index, data, data->size);
+        #endif
+        return -1;
+    }
+    
+    
 }
 
 // returns 1 if swap was successfull
@@ -45,6 +69,9 @@ int data_swap(size_t index1, size_t index2, Data* data){
         return 1;
     }else
     {
+        #ifdef LOGGING
+            printf("ERR: trying to swap indices %lu %lu of data %p max size %lu", index1, index2, data, data->size);
+        #endif
         return -1;
     }  
 }
