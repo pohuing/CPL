@@ -18,6 +18,7 @@ void data_generate(size_t size, Data* outData){
         data_swap(rand_1, rand_2, outData);
     }
 }
+
 void data_instantiate(size_t size, Data* outData){
     outData->size = size;
     outData->data = malloc(outData->size * sizeof(int));
@@ -26,9 +27,9 @@ void data_instantiate(size_t size, Data* outData){
 void data_delete(Data* data){
     data->size = 0;
     free(data->data);
+    data->data = NULL;
 }
 
-// returns 1 if a get was successfull
 int data_get(size_t index, Data* data, int* out){
     if (index < data->size)
     {
@@ -55,8 +56,6 @@ int data_set(size_t index, Data* data, int value){
         #endif
         return -1;
     }
-    
-    
 }
 
 // returns 1 if swap was successfull
