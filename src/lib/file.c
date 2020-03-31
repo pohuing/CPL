@@ -13,5 +13,31 @@ int file_load(Data* data, char path[]){
             int _ = fscanf(filepoint, "%d", &data->data[i]);
         }
         fclose(filepoint);
+        return 1;
     }
+    #ifdef LOGGING
+    printf("ERR: failed opening file %s", path);
+    #endif
+    return -1;
+}
+
+// Creates file "path", truncating existing contents
+int file_store(Data* data, char path[]){
+    FILE* filepoint = fopen(path, "w+");
+    if(filepoint){
+        fprintf(filepoint, "%lu\n", data->size);
+        for (size_t i = 0; i < data->size; i++)
+        {
+            int value;
+            if(data_get(i, &data, &value))
+                fprintf(filepoint, "%d ", value);
+        }
+    }else
+    {
+        #ifdef LOGGING
+        printf("ERR: failed to open file for writing %s", path);
+        #endif
+        return -1;
+    }
+    
 }
