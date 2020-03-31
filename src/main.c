@@ -7,7 +7,6 @@ int main(){
     Data data;
     // file_load(&data, "unsortiert.txt");
     // printf("Comparisons: %d", sort(&data));
-    _ui_bench();
-    printf("\n");
+    ui_start();
     return 0;
 }
