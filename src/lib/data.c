@@ -38,7 +38,7 @@ int data_get(size_t index, Data* data, int* out){
     }else
     {
         #ifdef LOGGING
-            printf("ERR: trying to access index %lu of %p max size %lu", index, data, data->size);
+            printf("ERR: trying to access index %lu of %p max size %lu", index, (void*)data, data->size);
         #endif
         return -1;
     }
@@ -52,7 +52,7 @@ int data_set(size_t index, Data* data, int value){
     }else
     {
         #ifdef LOGGING
-        printf("ERR: trying to set index %lu of data %p max size %lu", index, data, data->size);
+        printf("ERR: trying to set index %lu of data %p max size %lu", index, (void*)data, data->size);
         #endif
         return -1;
     }
@@ -69,7 +69,7 @@ int data_swap(size_t index1, size_t index2, Data* data){
     }else
     {
         #ifdef LOGGING
-            printf("ERR: trying to swap indices %lu %lu of data %p max size %lu", index1, index2, data, data->size);
+            printf("ERR: trying to swap indices %lu %lu of data %p max size %lu", index1, index2, (void*)data, data->size);
         #endif
         return -1;
     }  

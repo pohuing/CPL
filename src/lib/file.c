@@ -22,6 +22,7 @@ int file_load(Data* data, char path[]){
 }
 
 // Creates file "path", truncating existing contents
+// returns 1 if success -1 if filehandle failed to be created
 int file_store(Data* data, char path[]){
     FILE* filepoint = fopen(path, "w+");
     if(filepoint){
@@ -29,7 +30,7 @@ int file_store(Data* data, char path[]){
         for (size_t i = 0; i < data->size; i++)
         {
             int value;
-            if(data_get(i, &data, &value))
+            if(data_get(i, data, &value))
                 fprintf(filepoint, "%d ", value);
         }
     }else

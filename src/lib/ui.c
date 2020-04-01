@@ -1,8 +1,15 @@
 #include <stdio.h>
+#include <string.h>
 #include "ui.h"
 #include "data.h"
 #include "sort.h"
 #include "file.h"
+
+#define SORT_APPENDIX "-sort"
+// Handling Windows specific path length restrictions
+#ifndef _MAX_PATH
+#define _MAX_PATH 260
+#endif
 
 void ui_start(){
     int submenu;
@@ -13,7 +20,7 @@ void ui_start(){
     "\t2: Von sortiert.txt laden\n"
     "\t3: Arithmetisches Mittel von 1000-10_000"
     );
-        scanf("%d", &submenu);
+        int _ = scanf("%d", &submenu);
         switch (submenu)
         {
         case 1:
@@ -34,14 +41,16 @@ void ui_start(){
 void _ui_custom_numbers(){
     Data data;
     printf("Enter size of number set\n");
-    scanf("%lu", &data.size);
+    while(!scanf("%lu", &data.size))
+        printf("Enter a size");
     data_instantiate(data.size, &data);
     printf("Enter values\n");
     for (size_t i = 0; i < data.size; i++)
     {
         printf("%lu:", i);
         int value = 0;
-        scanf("%d", &value);
+        while(!scanf("%d", &value))
+            printf("Enter a number for index %lu", i);
         if(!data_set(i, &data, value)){
             printf("Error setting value, aborting");
             return;
@@ -57,26 +66,53 @@ void _ui_custom_numbers(){
 
 void _ui_load_unsorted(){
     Data data;
+    char path[_MAX_PATH - sizeof(SORT_APPENDIX)];
+    char target_path[_MAX_PATH];
     long swaps, comparisons;
-    file_load(&data, "unsortiert.txt");
-    sort(&data, &swaps, &comparisons);
+    do printf("Enter a path to load from");
+    while(!scanf("%s", path));
+    if (file_load(&data, path))
+    {
+        sort(&data, &swaps, &comparisons);
+        #ifdef COLLECT_STATISTICS
+        printf("Used %ld swaps and %ld comparisons", swaps, comparisons);
+        #endif
+        strcpy(target_path, path);
+        strcat(target_path, SORT_APPENDIX);
+        if(!file_store(&data, target_path))
+            printf("ERR: Failed to save file to path: %s", target_path);
+    }
 }
 
 void _ui_bench(){
+    FILE* filepoint = fopen("Ergebnisse.txt", "w+");
+    if (!filepoint)
+    {
+        printf("ERR: Failed to open or create file \"Ergebnisse.txt\" aborting");
+        return;
+    }
+    fprintf(filepoint, "Groesse, mit_swaps, mit_vergl\n");
     for (int factor = 1; factor <= 10; factor++)
     {
         long swaps, comparisons;
+        unsigned long long total_swaps = 0, total_comparisons = 0;
         for (size_t i = 0; i < 100; i++)
         {
             Data data;
             printf("Starting sorts for %d000\n", factor);
             data_generate(factor * 1000, &data);
             sort(&data, &swaps, &comparisons);
+            total_swaps += swaps;
+            total_comparisons += comparisons;
             #ifdef COLLECT_STATS
                 printf("Swaps: %ld Comparisons: %ld\n", swaps, comparisons);
             #endif
             data_delete(&data);
         }
-
+        fprintf(filepoint, "%d %llu %llu\n",
+            factor * 1000,
+            total_swaps/100,
+            total_comparisons/100);
     }
+    fclose(filepoint);
 }
