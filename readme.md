@@ -1,21 +1,26 @@
 #Prüfungsleistung C/C++
 ###TODO
-- [ ] Statistiken
-    - [ ] Vergleiche
-    - [ ] Zuweisungen
-    - [ ] Konditionale Kompilierung
+- [x] Statistiken
+    - [x] Vergleiche
+    - [x] Zuweisungen
+    - [x] Konditionale Kompilierung
 - [x] Daten einlesen
-- [ ] Daten exportieren
-    - [ ] Für von Datei geladene Werte sortiert.txt
-    - [ ] Für selber generierte Daten Statistiken in Ergebnisse.txt
+- [x] Daten exportieren
+    - [x] Für von Datei geladene Werte sortiert.txt
+    - [x] Für selber generierte Daten Statistiken in Ergebnisse.txt
 - [x] Zufallsdaten generieren
     - [ ] Zufälliger Seed
-- [ ] UI
-    - [ ] Sortieren eines Array mit Nutzerdefinierten Werten
+- [x] UI
+    - [x] Sortieren eines Array mit Nutzerdefinierten Werten
         - [ ] Statistiken Ausgabe
-    - [ ] Sortieren einer Datei
-        - [ ] Speichern in *-sort Datei
-        - [ ] Statistiken Ausgabe
-    - [ ] Sortieren von Generierten Daten
+    - [x] Sortieren einer Datei
+        - [x] Speichern in *-sort Datei
+        - [x] Statistiken Ausgabe
+    - [x] Sortieren von Generierten Daten
 
-Zählstatistiken durch COUNT_SWAPS
+Zählstatistiken werden durch COUNT_SWAPS ausgegeben
+`make statistics="-D COLLECT_STATS`
+Verstöße gegen bound checks können durch LOGGING aktiviert werden
+`make statistics="-D LOGGING"`
+Releaseprofil mit -O3 ist release
+`make release`
