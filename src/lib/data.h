@@ -41,30 +41,30 @@ void data_delete(Data* data);
 /**
  * @brief Bounds checked getter
  * 
- * @param index index of data to get
  * @param data struct to operate on
+ * @param index index of data to get
  * @param out value of index
  * @return int -1 if bounds check failed, 1 if set successfull
  */
-int data_get(size_t index, Data* data, int* out);
+int data_get(Data *data, size_t index, int *out);
 /**
  * @brief Bounds checked setter
  * 
- * @param index of index to set
  * @param data struct to operate on
+ * @param index of index to set
  * @param value to set index to
  * @return int -1 if bounds check failed, 1 if set successfull
  */
-int data_set(size_t index, Data* data, int value);
+int data_set(Data *data, size_t index, int value);
 /**
  * @brief Bounds checked swap of indices
  * 
+ * @param data struct to operate on
  * @param index1 index1 to swap
  * @param index2 index2 to swap
- * @param data struct to operate on
  * @return int -1 if bounds check failed, 1 if set successfull
  */
-int data_swap(size_t index1, size_t index2, Data* data);
+int data_swap(Data *data, size_t index2, size_t index1);
 /**
  * @brief Prints data contents to stdout
  * 

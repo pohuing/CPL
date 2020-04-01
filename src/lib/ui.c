@@ -51,7 +51,7 @@ void _ui_custom_numbers(){
         int value = 0;
         while(!scanf("%d", &value))
             printf("Enter a number for index %lu", i);
-        if(!data_set(i, &data, value)){
+        if(!data_set(&data, i, value)){
             printf("Error setting value, aborting");
             return;
         }

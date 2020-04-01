@@ -9,7 +9,7 @@ void sort(Data* data, long* swaps, long* comparisons){
         while (reverse_head && 
             data->data[reverse_head - 1] > data->data[reverse_head])
         {
-            data_swap(reverse_head - 1, reverse_head, data);
+            data_swap(data, reverse_head, reverse_head - 1);
             #ifdef COLLECT_STATS
                 (*swaps)++;
                 (*comparisons)++;

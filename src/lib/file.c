@@ -30,7 +30,7 @@ int file_store(Data* data, char path[]){
         for (size_t i = 0; i < data->size; i++)
         {
             int value;
-            if(data_get(i, data, &value))
+            if(data_get(data, i, &value))
                 fprintf(filepoint, "%d ", value);
         }
     }else
