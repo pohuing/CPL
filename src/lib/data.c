@@ -58,7 +58,7 @@ int data_set(Data *data, size_t index, int value) {
     }
 }
 
-// returns 1 if swap was successfull
+// returns 1 if swap was successful
 int data_swap(Data *data, size_t index2, size_t index1) {
     if (index1 < data->size && index2 < data->size)
     {

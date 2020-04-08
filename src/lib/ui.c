@@ -92,7 +92,7 @@ void _ui_bench(){
         printf("ERR: Failed to open or create file \"Ergebnisse.txt\" aborting");
         return;
     }
-    fprintf(filepoint, "Groesse, mit_swaps, mit_vergl\n");
+    fprintf(filepoint, "groesse, mit_swaps, mit_vergl\n");
     for (int factor = 1; factor <= 10; factor++)
     {
         long swaps, comparisons;

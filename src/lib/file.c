@@ -22,7 +22,7 @@ int file_load(Data* data, char path[]){
 }
 
 // Creates file "path", truncating existing contents
-// returns 1 if success -1 if filehandle failed to be created
+// returns 1 if success -1 if file handle failed to be created
 int file_store(Data* data, char path[]){
     FILE* filepoint = fopen(path, "w+");
     if(filepoint){
