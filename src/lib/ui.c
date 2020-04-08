@@ -59,6 +59,7 @@ void _ui_custom_numbers(){
     long swaps, comparisons;
     sort(&data, &swaps, &comparisons);
     data_print(&data);
+    data_delete(&data);
     #ifdef COLLECT_STATS
     printf("Used %ld swaps and %ld comparisons", swaps, comparisons);
     #endif

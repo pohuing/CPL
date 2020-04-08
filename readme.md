@@ -1,5 +1,5 @@
-#Prüfungsleistung C/C++
-###TODO
+# Prüfungsleistung C/C++
+### TODO
 - [x] Statistiken
     - [x] Vergleiche
     - [x] Zuweisungen
@@ -19,11 +19,23 @@
     - [x] Sortieren von Generierten Daten
 
 Zählstatistiken werden durch COUNT_SWAPS ausgegeben
+
 `make statistics="-D COLLECT_STATS`
+
 Verstöße gegen bound checks können durch LOGGING aktiviert werden
+
 `make statistics="-D LOGGING"`
+
 Releaseprofil mit -O3 ist release
+<<<<<<< HEAD
 `make release`
 
 Durchschnittliche Vergleiche und Swaps und Trendlinie:
 ![Diagramme](/Diagramme.png)
+=======
+
+`make release`
+
+### Durchschnittliche Vergleiche und Swaps und Trendlinie:
+![Diagramme](/Diagramme.png)
+>>>>>>> af672dee4a3ce172376742c56f33552570406cb3
