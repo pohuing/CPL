@@ -24,3 +24,6 @@ Verstöße gegen bound checks können durch LOGGING aktiviert werden
 `make statistics="-D LOGGING"`
 Releaseprofil mit -O3 ist release
 `make release`
+
+Durchschnittliche Vergleiche und Swaps und Trendlinie:
+![Diagramme](/Diagramme.png)
