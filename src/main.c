@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include "lib/sort.h"
-#include "lib/file.h"
-#include "lib/ui.h"
+#include "lib/data.h"
+#include "ui/ui.h"
 
 int main(){
     Data data;

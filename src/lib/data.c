@@ -13,8 +13,8 @@ void data_generate(size_t size, Data* outData){
     //shuffle size times
     for (size_t counter = 0; counter < size; counter++)
     {
-        int rand_1 = rand() % size;
-        int rand_2 = rand() % size;
+        size_t rand_1 = rand() % size;
+        size_t rand_2 = rand() % size;
         data_swap(outData, rand_2, rand_1);
     }
 }

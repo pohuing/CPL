@@ -1,4 +1,4 @@
-objects = $(srcDir)main.o $(libDir)data.o $(libDir)sort.o $(libDir)file.o $(libDir)ui.o
+objects = $(srcDir)main.o $(libDir)data.o $(libDir)sort.o $(libDir)file.o $(srcDir)/ui/ui.o
 srcDir = src/
 libDir = $(srcDir)lib/
 statistics = 

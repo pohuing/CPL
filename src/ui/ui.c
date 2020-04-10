@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "ui.h"
-#include "data.h"
-#include "sort.h"
-#include "file.h"
+#include "../lib/sort.h"
+#include "../lib/file.h"
 
 #define SORT_APPENDIX "-sort"
 // Handling Windows specific path length restrictions
@@ -41,16 +40,16 @@ void ui_start(){
 void _ui_custom_numbers(){
     Data data;
     printf("Enter size of number set\n");
-    while(!scanf("%lu", &data.size))
+    while(!scanf("%zu", &data.size))
         printf("Enter a size");
     data_instantiate(data.size, &data);
     printf("Enter values\n");
     for (size_t i = 0; i < data.size; i++)
     {
-        printf("%lu:", i);
+        printf("%zu:", i);
         int value = 0;
         while(!scanf("%d", &value))
-            printf("Enter a number for index %lu", i);
+            printf("Enter a number for index %zu", i);
         if(!data_set(&data, i, value)){
             printf("Error setting value, aborting");
             return;
