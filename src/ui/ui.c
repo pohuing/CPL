@@ -62,7 +62,7 @@ void _ui_custom_numbers(){
     data_print(&data);
     data_delete(&data);
     #ifdef COLLECT_STATS
-    printf("Used %ld swaps and %ld comparisons", swaps, comparisons);
+    printf("Used %ld swaps and %ld comparisons\n", swaps, comparisons);
     #endif
 }
 
@@ -87,6 +87,9 @@ void _ui_load_unsorted(){
 }
 
 void _ui_bench(){
+    int count;
+    printf("How many repeats per step? ");
+    while(!scanf("%d", &count));
     FILE* filepoint = fopen("Ergebnisse.txt", "w+");
     if (!filepoint)
     {
@@ -98,7 +101,7 @@ void _ui_bench(){
     {
         long swaps, comparisons;
         unsigned long long total_swaps = 0, total_comparisons = 0;
-        for (size_t i = 0; i < 100; i++)
+        for (size_t i = 0; i < count; i++)
         {
             Data data;
             printf("Starting sorts for %d000\n", factor);
