@@ -1,8 +1,9 @@
 #include "lib/data.h"
 #include "ui/ui.h"
+#include <time.h>
 
 int main(){
-    Data data;
+    srand(time(NULL));
     ui_start();
     return 0;
 }
