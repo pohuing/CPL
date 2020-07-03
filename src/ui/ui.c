@@ -16,7 +16,7 @@ void ui_start(){
     {
     printf("Nummer angeben um option zu wählen\n");
     printf("\t1: Eigene Zahlen\n"
-    "\t2: Von sortiert.txt laden\n"
+    "\t2: Von unsortiert.txt laden\n"
     "\t3: Arithmetisches Mittel von 1000-10_000"
     );
         int _ = scanf("%d", &submenu);
@@ -27,8 +27,10 @@ void ui_start(){
             break;
         case 2:
             _ui_load_unsorted();
+            break;
         case 3:
             _ui_bench();
+            break;
         default:
             printf("Bitte Zahl von 1-3 Angeben\n");
             break;
@@ -69,12 +71,12 @@ void _ui_load_unsorted(){
     char path[_MAX_PATH - sizeof(SORT_APPENDIX)];
     char target_path[_MAX_PATH];
     long swaps, comparisons;
-    do printf("Enter a path to load from");
+    do printf("Enter a path to load from ");
     while(!scanf("%s", path));
     if (file_load(&data, path))
     {
         sort(&data, &swaps, &comparisons);
-        #ifdef COLLECT_STATISTICS
+        #ifdef COLLECT_STATS
         printf("Used %ld swaps and %ld comparisons", swaps, comparisons);
         #endif
         strcpy(target_path, path);
