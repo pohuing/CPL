@@ -10,7 +10,7 @@
  */
 typedef struct Data{
     size_t size;
-    int* data;
+    size_t* data;
 } Data;
 
 /**
