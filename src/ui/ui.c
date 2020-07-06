@@ -3,6 +3,8 @@
 #include "ui.h"
 #include "../lib/sort.h"
 #include "../lib/file.h"
+#include "errno.h"
+
 
 #define SORT_APPENDIX "-sort"
 // Handling Windows specific path length restrictions
@@ -14,12 +16,12 @@ void ui_start(){
     int submenu;
     while (true)
     {
-    printf("Nummer angeben um option zu wählen\n");
+    printf("Nummer angeben um option zu waehlen\n");
     printf("\t1: Eigene Zahlen\n"
     "\t2: Von unsortiert.txt laden\n"
     "\t3: Arithmetisches Mittel von 1000-10_000"
     );
-        int _ = scanf("%d", &submenu);
+        submenu = _ui_get_num();
         switch (submenu)
         {
         case 1:
@@ -49,7 +51,7 @@ void _ui_custom_numbers(){
     {
         printf("%zu:", i);
         int value = _ui_get_num();
-        if(!data_set(&data, i, value)){
+        if(data_set(&data, i, value) < 1){
             printf("Error setting value, aborting");
             return;
         }
@@ -69,16 +71,17 @@ void _ui_load_unsorted(){
     char target_path[_MAX_PATH];
     long swaps, comparisons;
     do printf("Enter a path to load from ");
-    while(!scanf("%s", path));
-    if (file_load(&data, path))
+    while(!fgets(path, sizeof(path), stdin));
+    path[strlen(path) - 1] = 0;
+    if (file_load(&data, path) > 0)
     {
         sort(&data, &swaps, &comparisons);
         #ifdef COLLECT_STATS
-        printf("Used %ld swaps and %ld comparisons", swaps, comparisons);
+        printf("Used %ld swaps and %ld comparisons\n", swaps, comparisons);
         #endif
         strcpy(target_path, path);
         strcat(target_path, SORT_APPENDIX);
-        if(!file_store(&data, target_path))
+        if(file_store(&data, target_path) < 1)
             printf("ERR: Failed to save file to path: %s", target_path);
     }else
         printf("Failed to load file");
@@ -123,19 +126,27 @@ void _ui_bench(){
 int _ui_get_num(){
     char buffer[128];
     int num = 0;
-    while(!(num = atoi(buffer))){
+    char* endptr;
+    do{
+        errno = 0;
         printf("Enter a number only: ");
         fgets(buffer, 128, stdin);
-    }
+        num = strtol(buffer, &endptr, 10);
+        // Errorchecking, endptr should point to newline if parsing completed, errno should be 0
+    }while(*endptr != '\n' || errno);
     return num;
 }
 
 size_t _ui_get_size_t(){
     char buffer[128];
+    char* endptr;
     size_t num = 0;
-    while(!(num = strtoull(buffer, NULL, 10))){
+    do{
+        errno = 0;
         printf("Enter a number only: ");
         fgets(buffer, 128, stdin);
-    }
+        num = strtoull(buffer, &endptr, 10);
+        // Errorchecking, endptr should point to newline if parsing completed, errno should be 0
+    }while(*endptr != '\n' || errno);
     return num;
 }

@@ -30,9 +30,11 @@ int file_store(Data* data, char path[]){
         for (size_t i = 0; i < data->size; i++)
         {
             int value;
-            if(data_get(data, i, &value))
+            if(data_get(data, i, &value) > 0)
                 fprintf(filepoint, "%d ", value);
         }
+        fclose(filepoint);
+        return 1;
     }else
     {
         #ifdef LOGGING
