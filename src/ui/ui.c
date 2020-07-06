@@ -42,16 +42,13 @@ void ui_start(){
 void _ui_custom_numbers(){
     Data data;
     printf("Enter size of number set\n");
-    while(!scanf("%zu", &data.size))
-        printf("Enter a size");
+    data.size = _ui_get_size_t();
     data_instantiate(data.size, &data);
     printf("Enter values\n");
     for (size_t i = 0; i < data.size; i++)
     {
         printf("%zu:", i);
-        int value = 0;
-        while(!scanf("%d", &value))
-            printf("Enter a number for index %zu", i);
+        int value = _ui_get_num();
         if(!data_set(&data, i, value)){
             printf("Error setting value, aborting");
             return;
@@ -83,7 +80,8 @@ void _ui_load_unsorted(){
         strcat(target_path, SORT_APPENDIX);
         if(!file_store(&data, target_path))
             printf("ERR: Failed to save file to path: %s", target_path);
-    }
+    }else
+        printf("Failed to load file");
 }
 
 void _ui_bench(){
@@ -117,4 +115,24 @@ void _ui_bench(){
             total_comparisons/100);
     }
     fclose(filepoint);
+}
+
+int _ui_get_num(){
+    char buffer[128];
+    int num = 0;
+    while(!(num = atoi(buffer))){
+        printf("Enter a number only: ");
+        fgets(buffer, 128, stdin);
+    }
+    return num;
+}
+
+size_t _ui_get_size_t(){
+    char buffer[128];
+    size_t num = 0;
+    while(!(num = strtoull(buffer, NULL, 10))){
+        printf("Enter a number only: ");
+        fgets(buffer, 128, stdin);
+    }
+    return num;
 }

@@ -35,9 +35,6 @@ void data_instantiate(size_t size, Data* outData);
  * @param data struct to free
  */
 void data_delete(Data* data);
-// Bounds checked access into data of index index
-// @Returns if the operation was successful
-//   1 for success -1 for out of bounds
 /**
  * @brief Bounds checked getter
  * 

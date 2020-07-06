@@ -13,6 +13,8 @@ release : CFLAGS += -O3
 release : $(objects)
 	$(CC) $(CFLAGS) -o main.exe $(objects)
 main.o : $(srcDir)main.c $(libDir)data.o $(libDir)sort.o $(libDir)file.o
-
+	$(CC) $(CFLAGS) -o main.exe $(objects)
+from_file: $(srcDir)from_file.o $(libDir)data.o $(libDir)sort.o $(libDir)file.o
+	$(CC) $(CFLAGS) -o from_file.exe $(srcDir)from_file.o $(libDir)data.o $(libDir)sort.o $(libDir)file.o
 clean:
 	-rm $(objects)
